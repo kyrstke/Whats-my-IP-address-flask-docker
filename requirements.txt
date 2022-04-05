@@ -1,0 +1,7 @@
+flask
+flask_accept
+requests
+pysqlite3
+python-simplexml
+pyyaml
+Flask-limiter

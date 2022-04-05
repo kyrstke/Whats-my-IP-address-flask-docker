@@ -1,0 +1,50 @@
+body {
+    margin: 50px;
+}
+
+.main {
+    display: grid;
+    grid-template-areas:    "a b"
+                            "c d";
+
+} 
+
+.ip-info {
+    margin: 10px;
+}
+
+#public-ip-info {
+    grid-area: a;
+}
+
+#local-ip-info {
+    grid-area: b;
+}
+
+#public-ip-list {
+    grid-area: c;
+}
+
+#local-ip-list {
+    grid-area: d;
+}
+
+.ip-list {
+    margin: 10px;
+}
+
+.ip-list-row {
+    display: grid;
+    grid-template-columns: 1fr 6fr 6fr;
+    margin: 10px 0px;
+    margin-right: 10px;
+}
+
+.list-title {
+    margin: 10px 0px;
+    margin-right: 10px;
+}
+
+.cell {
+    margin-right: 5px;
+}

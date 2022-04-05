@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your IP Address</title>
+</head>
+<body>
+    <div class="main">
+        <div class="ip-info", id="public-ip-info">
+            Your public IP address is: <b>{{ ips['public'] }}</b>
+        </div>
+        <div class="ip-info", id="local_ip-info">
+            Your local IP address is: <b>{{ ips['local'] }}</b>
+        </div>
+        <div class="ip-list", id="public-ip-list">
+            <div class="list-title">
+                List of public IPs that have accessed the website in the past:
+            </div>
+            <div class="ip-list-row">
+                <div class="cell">
+                    <b>ID</b>
+                </div>
+                <div class="cell">
+                    <b>IP address</b>
+                </div>
+                <div class="cell">
+                    <b>Time accessed</b>
+                </div>
+            </div>
+            {% for ip in ips['public_ips'] %}
+                <div class="ip-list-row">
+                    {% if ip['IP'] == ips['public'] %}
+                        <div class="cell">
+                            <b>{{ ip['ID'] }}</b>
+                        </div>
+                        <div class="cell">
+                            <b>{{ ip['IP'] }} (you)</b>
+                        </div>
+                        <div class="cell">
+                            <b>{{ ip['time_accessed'] }}</b>
+                        </div>
+                    {% else %}
+                        <div class="cell">
+                            {{ ip['ID'] }}
+                        </div>
+                        <div class="cell">
+                            {{ ip['IP'] }}
+                        </div>
+                        <div class="cell">
+                            {{ ip['time_accessed'] }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="ip-list", id="local-ip-list">
+            <div class="list-title">
+                List of local IPs that have accessed the website in the past:
+            </div>
+            <div class="ip-list-row">
+                <div class="cell">
+                    <b>ID</b>
+                </div>
+                <div class="cell">
+                    <b>IP address</b>
+                </div>
+                <div class="cell">
+                    <b>Time accessed</b>
+                </div>
+            </div>
+            {% for ip in ips['local_ips'] %}
+                <div class="ip-list-row">
+                    {% if ip['IP'] == ips['local'] %}
+                        <div class="cell">
+                            <b>{{ ip['ID'] }}</b>
+                        </div>
+                        <div class="cell">
+                            <b>{{ ip['IP'] }} (you)</b>
+                        </div>
+                        <div class="cell">
+                            <b>{{ ip['time_accessed'] }}</b>
+                        </div>
+                    {% else %}
+                        <div class="cell">
+                            {{ ip['ID'] }}
+                        </div>
+                        <div class="cell">
+                            {{ ip['IP'] }}
+                        </div>
+                        <div class="cell">
+                            {{ ip['time_accessed'] }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
