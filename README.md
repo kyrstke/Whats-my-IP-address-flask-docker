@@ -18,7 +18,7 @@ The app implements rate limiting. The maximum number of requests is set to 50 pe
 
 ## Setup
 
-You can either run the image directly from Docker Hub or build it locally from source files.
+You can either download and run the image directly from Docker Hub by typing one command or build it locally from the source files.
 
 ### Docker Hub
 
