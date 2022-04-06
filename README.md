@@ -2,7 +2,7 @@
 
 A simple application returning client's IP addresses (public and local) as well as two lists containing IPs that have queried the app in the past.
 The lists are stored in an external SQLite database, running in an individual container.
-The app supports .html, .txt, .xml, .yaml and .json formats which correspond to the following MIME types respectively:
+The app supports ```.html, .txt, .xml, .yaml``` and ```.json``` formats which correspond to the following MIME types respectively:
 
 - text/html
 - text/plain
