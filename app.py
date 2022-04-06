@@ -13,7 +13,7 @@ import re
 
 app = Flask(__name__)
 
-app.config["DEBUG"] = True
+# app.config["DEBUG"] = True
 app.config['JSON_SORT_KEYS'] = False
 
 limiter = Limiter(
@@ -24,12 +24,11 @@ limiter = Limiter(
 
 DATABASE = path.realpath(path.join(path.dirname(__file__), 'db', 'ips.db'))
 
-
 @app.route("/", methods=["GET"])
 @accept('text/html')
 def home():
     ips = get_data()
-    return render_template('home.html', ips=ips), 200
+    return render_template('home.html', ips=ips), 200   # TODO: add simpler html file for requests not coming from browser
 
 
 @home.support('text/plain')
@@ -47,7 +46,7 @@ def home_json():
 @home.support('application/xml')
 def home_xml():
     ips = get_data()
-    return dumps({'response' : ips})
+    return dumps({'response': ips})
 
 
 @home.support('application/x-yaml')
@@ -60,16 +59,13 @@ def get_db():
     db = sqlite3.connect(DATABASE)
     cur = db.cursor()
 
-    # cur.execute("drop table if exists public_ips;")
-    # cur.execute("drop table if exists local_ips;")
-    # cur.execute("drop table if exists test_ips;")
-
     cur.execute("create table if not exists public_ips (id integer primary key autoincrement, address text unique, time_accessed timestamp default (datetime('now','localtime')));")
     cur.execute("create table if not exists local_ips (id integer primary key autoincrement, address text unique, time_accessed timestamp default (datetime('now','localtime')));")
     
     db.commit()
 
     return db, cur
+
 
 def get_data():
     db, cur = get_db()
@@ -97,6 +93,7 @@ def query_all(cur, table):
     cur.execute(query)
     results = cur.fetchall()
 
+    # create a list of dictionaries
     table_data = []
     for result in results:
         table_data.append({
@@ -124,11 +121,6 @@ def insert(db, cur, table, arguments):
             print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
-def make_dicts(cursor, row):
-    return dict((cursor.description[idx][0], value)
-                for idx, value in enumerate(row))
-
-
 @app.teardown_appcontext
 def close_connection(exception):
     db = sqlite3.connect(DATABASE)
@@ -136,4 +128,4 @@ def close_connection(exception):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0') # debug=True
