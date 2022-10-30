@@ -1,7 +1,5 @@
-# Whats my IP address
+# What's my IP
 
-A simple application returning client's IP addresses (public and local) as well as two lists containing IPs that have queried the app in the past.
-The lists are stored in a SQLite database.
 The app supports ```.html, .txt, .xml, .yaml``` and ```.json``` formats which correspond to the following MIME types respectively:
 
 - text/html
